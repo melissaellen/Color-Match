@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Color Matching Game</title>
+<script>
+
+var target;
+var guess_input_text;
+var guess_input;
+var finished = false;
+var guesses = 0;
+
+function do_game(){
+	var colors = ["aqua", "beige", "coral", "gold", "lavender", "lime", "teal", "yellow"];
+	var random_color = colors[Math.floor(Math.random() * colors.length)];
+	target = random_color;
+	//alert (target);
+	
+	while(!finished){
+		guess_input_text = prompt ("I am thinking of one of these colors \n\n" + colors.join() + "\n\n What is the color?");
+		//alert (guess_input_text);
+		guesses += 1;
+		finished = game_check();
+	}
+
+};
+
+function game_check(){
+	
+	if(guess_input_text < target){
+		alert ("The target color is higher alphabetically than your guess, try again.");
+		return false;
+	}else if(guess_input_text > target){
+		alert("The target color is lower alphabetically than your guess, try again.");
+		return false;
+	}else if(guess_input_text == target){
+		alert ("You got the correct color " + target + "\n\n It took you " + guesses + " guesses!");
+		document.body.style.background = target;
+		return true;
+	}
+};
+
+</script>
+</head>
+
+<body onload="do_game()">
+</body>
+</html>
